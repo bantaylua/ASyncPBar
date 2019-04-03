@@ -17,7 +17,7 @@
     <ProgressBar
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:minHeight="20dp"
+        android:minHeight="10dp"
         android:maxHeight="20dp"
         android:id="@+id/progressBar"
         android:max="100"

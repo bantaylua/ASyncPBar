@@ -26,24 +26,24 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        progressBar.setMax(10);
+        progressBar.setMax(100);
         btn = (Button) findViewById(R.id.btn);
         btn.setText("Start");
         txt = (TextView) findViewById(R.id.output);
-        btn.
+
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 edit = (EditText) findViewById(R.id.editNumber);
                 tView = (TextView) findViewById(R.id.tView);
                 sleepTime = Integer.valueOf(edit.getText().toString());
-                tView.setText(String.valueOf(sleepTime));
+                tView.setText("Sleep Time: " + String.valueOf(sleepTime));
                 count = 1;
                 progressBar.setVisibility(View.VISIBLE);
                 progressBar.setProgress(0);
                 switch (view.getId()){
                     case R.id.btn:
-                        new MyTask().execute(10);
+                        new MyTask().execute(100);
                         break;
                 }
             }
@@ -72,14 +72,16 @@ public class MainActivity extends Activity {
             progressBar.setVisibility(View.GONE);
             txt.setText(result);
             btn.setText("Restart");
+            btn.setEnabled(true);
         }
         @Override
         protected void onPreExecute() {
             txt.setText("Task starting ...");
+            btn.setEnabled(false);
         }
         @Override
         protected void onProgressUpdate(Integer... values){
-            txt.setText("Running ..." + values[0]);
+            txt.setText("Running ..." + values[0] + "%");
             progressBar.setProgress(values[0]);
         }
     }
